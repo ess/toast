@@ -10,13 +10,12 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-- task: AzureWebApp@1
+- task: AzureRmWebAppDeployment@4
   inputs:
+    ConnectionType: 'AzureRM'
     azureSubscription: 'Azure subscription 1(f27b76f5-ca26-47c9-b400-a6cd7e7e6ede)'
     appType: 'webAppLinux'
-    appName: 'toast'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    runtimeStack: 'RUBY|2.6'
-    startUpCommand: 'bundle exec rackup -p ${PORT:5000}'
-  displayName: 'deploy it'
+    WebAppName: 'flibberty'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    RuntimeStack: 'RUBY|2.6'
+    StartupCommand: 'bundle exec rackup -p ${PORT:5000}'
